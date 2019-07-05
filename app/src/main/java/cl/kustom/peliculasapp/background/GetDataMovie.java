@@ -38,8 +38,9 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
             if(200 == response.code() && response.isSuccessful())
             {
 
-
+                Log.d("Kustom Response", String.valueOf(response.body().getTotal_results()));
                 return response.body().getResults();
+
             }else
             {
 
@@ -51,21 +52,24 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
         }
     }
 
-    @Override
+  /*  @Override
     protected void onPostExecute(List <Movie> movies) {
-        Log.d("Kustom ", "Las putah");
+       /* Log.d("Kustom ", "**********************ON-POST-EXECUTE***********************");
+
         if(movies !=null){
-            Log.d("Kustom post Fragment", movies.get(0).getTitle());
+        for (int i = 0; i < movies.size(); i++) {
+            Log.d("Kustom post Fragment", String.valueOf(movies.get(i).getId()));
+        }
 
             //adapter.update(Arrays.asList(moviesWrappers));
         }else{
-           Log.d("Kustom","else del asynctaks"); //Toast.makeText(getContext(), "Esta tirando null", Toast.LENGTH_SHORT).show();
+
 
 
         }
 
         //progressDialog.dismiss();
-    }
+    }*/
 
 
 

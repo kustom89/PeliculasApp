@@ -15,14 +15,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import cl.kustom.peliculasapp.R;
 import cl.kustom.peliculasapp.adapters.MovieAdapter;
 import cl.kustom.peliculasapp.background.GetDataMovie;
 import cl.kustom.peliculasapp.models.Movie;
-import cl.kustom.peliculasapp.models.MoviesWrapper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,8 +58,18 @@ public class MoviesFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new MovieAdapter();
+        List<Movie> movies = new ArrayList <>();
         recyclerView.setAdapter(adapter);
         new Background().execute();
+        Log.d("Kustom","Despues del execute");
+        movies = new Background().moviesHandler(movies);
+        //for (int i = 0; i < movies.size(); i++) {
+          //  Log.d("Kustom","Pasando " + movies.get(i));
+        //}
+
+        Log.d("Kustom","Pegate una petite");
+
+
 
 
     }
@@ -82,8 +91,25 @@ public class MoviesFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
-            Log.d("kustom","toque con la petite");
+            Log.d("Kustom en el Size", String.valueOf(movies.size()));
+            for (int i = 0; i < 20; i++) {
+                Log.d("Kustom en el Fragment", String.valueOf(movies.get(i).getTitle())+  " " + String.valueOf(i) + " Petite");
+
+                //movies.add(movies.get(i));
+                movies.addAll(movies);
+                moviesHandler(movies);
+               // Log.d("KustomPoblando", String.valueOf(movies.get(i)));
+
+
+            }
         }
+
+        private List<Movie> moviesHandler(List<Movie> movies){
+            return movies;
+
+        }
+
+
     }
     /* Log.d("Kustom","Pasando al post");
             if(moviesWrappers !=null){

@@ -15,6 +15,7 @@ import java.util.List;
 import cl.kustom.peliculasapp.R;
 import cl.kustom.peliculasapp.models.MoviesWrapper;
 import cl.kustom.peliculasapp.models.Movie;
+import cl.kustom.peliculasapp.views.MoviesFragment;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -34,9 +35,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         Log.d("Kustom5","*********************");
 
         Movie movie =  resultsList.get(i);
-        String tittula= movie.getTitle();
-        Context context = viewHolder.itemView.getContext();
-        viewHolder.title.setText(tittula);
+        //String tittula= movie.getTitle();
+        //Context context = viewHolder.itemView.getContext();
+        viewHolder.title.setText(movie.getTitle().toString());
+
 
     }
 
