@@ -25,7 +25,7 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
     protected List <Movie> doInBackground(String... voids) {
 
 
-        //Log.d("Kustom 1","Kustom");
+        Log.d("Kustom 1","***************DO-IN-BACKGROUND*************");
         GetMovie movie = new MovieInterceptor().get();
         ///Log.d("Kustom2",movie.toString());
         Call <MoviesWrapper> indicator = movie.movieBypopularity(GetMovie.key);
@@ -33,12 +33,14 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
 
         try {
             Response <MoviesWrapper> response = indicator.execute();
-            Log.d("Kustom4",response.toString());
-            Log.d("Kustom4","Pasando por el if");
+            Log.d("Kustom ", "************************OBTENIENDO URL DEL SERVICIO*********************");
+            Log.d("Kustom URL",response.toString());
+
             if(200 == response.code() && response.isSuccessful())
             {
 
-                Log.d("Kustom Response", String.valueOf(response.body().getTotal_results()));
+                Log.d("Kustom ", "************************OBTENIENDO DATOS DEL SERVICIO*********************");
+                Log.d("Kustom CANTIDAD DE RESULTADOS =====> ", String.valueOf(response.body().getTotal_results()));
                 return response.body().getResults();
 
             }else

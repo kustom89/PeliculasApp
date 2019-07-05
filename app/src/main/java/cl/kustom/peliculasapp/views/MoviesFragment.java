@@ -61,13 +61,12 @@ public class MoviesFragment extends Fragment {
         List<Movie> movies = new ArrayList <>();
         recyclerView.setAdapter(adapter);
         new Background().execute();
-        Log.d("Kustom","Despues del execute");
+        Log.d("Kustom Despues del execute","*************************ON-VIEW-CREATED**********************");
         movies = new Background().moviesHandler(movies);
         //for (int i = 0; i < movies.size(); i++) {
           //  Log.d("Kustom","Pasando " + movies.get(i));
         //}
 
-        Log.d("Kustom","Pegate una petite");
 
 
 
@@ -82,7 +81,7 @@ public class MoviesFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             Toast.makeText(getContext(), "Esta pasando por el pre", Toast.LENGTH_SHORT).show();
-            Log.d("Kustom","Pasando por el pre");
+            Log.d("Kustom","*****************************ON-PRE-EXECUTE*******************");
             progressDialog = new ProgressDialog(getContext());
 
             //progressDialog.show();
@@ -91,9 +90,10 @@ public class MoviesFragment extends Fragment {
         @Override
         protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
-            Log.d("Kustom en el Size", String.valueOf(movies.size()));
+            Log.d("Kustom","*****************ENTRANDO-EN-EL-POST-EXECUTE***********************");
+            Log.d("Kustom  TAMAÑO DE LA PAGINA ==============>", String.valueOf(movies.size()));
             for (int i = 0; i < 20; i++) {
-                Log.d("Kustom en el Fragment", String.valueOf(movies.get(i).getTitle())+  " " + String.valueOf(i) + " Petite");
+                Log.d("Kustom en el Fragment 1", String.valueOf(movies.get(i).getTitle())+  " - " + String.valueOf(i));
 
                 //movies.add(movies.get(i));
                 movies.addAll(movies);

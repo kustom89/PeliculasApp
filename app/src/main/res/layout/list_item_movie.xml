@@ -3,17 +3,28 @@
     android:orientation="vertical"
     android:layout_width="match_parent" android:layout_height="250dp">
 
-    <TextView
-        android:id="@+id/titleTv"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:paddingBottom="8dp"
-        android:text="Pruena prueba "
-        android:textColor="@android:color/black"
-        android:background="@color/colorAccent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="8dp" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingBottom="8dp"
+            android:text="Titulo "
+            android:textColor="@android:color/black"
+            android:background="@color/colorAccent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp" />
+
+
+
+    </LinearLayout>
+
+
 
 </LinearLayout>
