@@ -19,15 +19,13 @@ import cl.kustom.peliculasapp.views.MoviesFragment;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    private List<Movie> resultsList = new ArrayList <>();
+    public List<Movie> resultsList = new ArrayList <>();
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        Log.d("Kustom5","*********************");
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item_movie, viewGroup, false);
-        Log.d("Kustom5","*********************");
         return new ViewHolder(view);    }
 
     @Override
@@ -38,12 +36,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         //String tittula= movie.getTitle();
         //Context context = viewHolder.itemView.getContext();
         viewHolder.title.setText(movie.getTitle().toString());
+        viewHolder.fechaEstreno.setText(movie.getRelease_date().toString());
 
 
     }
 
     @Override
     public int getItemCount() {
+        Log.d("Kustom getItemCount", String.valueOf(resultsList.size()));
         return resultsList.size();
     }
 
@@ -51,18 +51,19 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         Log.d("Kustom5","Entra por el Update");
         resultsList.addAll(moviesWrappers);
         notifyDataSetChanged();
-        Log.d("Kustom5","Pasa por el Update");
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
 
         private TextView title;
+        private TextView fechaEstreno;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             title = (TextView) itemView.findViewById(R.id.titleTv);
+            fechaEstreno = itemView.findViewById(R.id.fechaEstrenoTv);
         }
     }
 }

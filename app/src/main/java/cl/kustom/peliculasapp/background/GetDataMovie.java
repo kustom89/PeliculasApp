@@ -27,9 +27,7 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
 
         Log.d("Kustom 1","***************DO-IN-BACKGROUND*************");
         GetMovie movie = new MovieInterceptor().get();
-        ///Log.d("Kustom2",movie.toString());
         Call <MoviesWrapper> indicator = movie.movieBypopularity(GetMovie.key);
-        //Log.d("Kustom3",indicator.toString());
 
         try {
             Response <MoviesWrapper> response = indicator.execute();
@@ -54,24 +52,22 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
         }
     }
 
-  /*  @Override
+   @Override
     protected void onPostExecute(List <Movie> movies) {
-       /* Log.d("Kustom ", "**********************ON-POST-EXECUTE***********************");
+      Log.d("Kustom ", "**********************ON-POST-EXECUTE***********************");
 
         if(movies !=null){
         for (int i = 0; i < movies.size(); i++) {
-            Log.d("Kustom post Fragment", String.valueOf(movies.get(i).getId()));
+            Log.d("Kustom post Fragment", String.valueOf(movies.get(i).getTitle()));
         }
 
-            //adapter.update(Arrays.asList(moviesWrappers));
         }else{
 
 
 
         }
 
-        //progressDialog.dismiss();
-    }*/
+    }
 
 
 

@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cl.kustom.peliculasapp.R;
@@ -37,9 +38,7 @@ public class MoviesFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_movies, container, false);
     }
 
@@ -49,12 +48,9 @@ public class MoviesFragment extends Fragment {
 
         SwipeRefreshLayout refreshLayout ;
         refreshLayout = view.findViewById(R.id.reloadSRL);
-
         RecyclerView recyclerView= view.findViewById(R.id.moviesRv);
         recyclerView.setHasFixedSize(true);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        //linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         adapter = new MovieAdapter();
@@ -62,10 +58,8 @@ public class MoviesFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         new Background().execute();
         Log.d("Kustom Despues del execute","*************************ON-VIEW-CREATED**********************");
-        movies = new Background().moviesHandler(movies);
-        //for (int i = 0; i < movies.size(); i++) {
-          //  Log.d("Kustom","Pasando " + movies.get(i));
-        //}
+
+        new Background();
 
 
 
@@ -80,46 +74,27 @@ public class MoviesFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            Toast.makeText(getContext(), "Esta pasando por el pre", Toast.LENGTH_SHORT).show();
-            Log.d("Kustom","*****************************ON-PRE-EXECUTE*******************");
+            Toast.makeText(getContext(), "INICIO", Toast.LENGTH_SHORT).show();
+            Log.d("Kustom","******INICIO******");
             progressDialog = new ProgressDialog(getContext());
 
-            //progressDialog.show();
+            progressDialog.show();
         }
 
         @Override
         protected void onPostExecute(List<Movie> movies) {
             super.onPostExecute(movies);
-            Log.d("Kustom","*****************ENTRANDO-EN-EL-POST-EXECUTE***********************");
-            Log.d("Kustom  TAMAÑO DE LA PAGINA ==============>", String.valueOf(movies.size()));
-            for (int i = 0; i < 20; i++) {
-                Log.d("Kustom en el Fragment 1", String.valueOf(movies.get(i).getTitle())+  " - " + String.valueOf(i));
-
-                //movies.add(movies.get(i));
-                movies.addAll(movies);
-                moviesHandler(movies);
-               // Log.d("KustomPoblando", String.valueOf(movies.get(i)));
-
-
+            Log.d("Kustom","*****FIN********");
+            Toast.makeText(getContext(), "Termino", Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < movies.size(); i++) {
+                adapter.update(Arrays. <Movie>asList(movies.get(i)));
+                Log.d("Kustom FIN ", String.valueOf(Arrays.asList(movies.get(i))));
             }
-        }
+            progressDialog.dismiss();
 
-        private List<Movie> moviesHandler(List<Movie> movies){
-            return movies;
 
         }
 
-
     }
-    /* Log.d("Kustom","Pasando al post");
-            if(moviesWrappers !=null){
-                Log.d("Kustom post Fragment",moviesWrappers.toString());
-                adapter.update(Arrays.asList(moviesWrappers));
-            }else{
-                Toast.makeText(getContext(), "Esta tirando null", Toast.LENGTH_SHORT).show();
-            }
 
-            progressDialog.dismiss();*/
-
-
-    }
+}
