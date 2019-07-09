@@ -59,6 +59,7 @@ public class GetDataMovie extends AsyncTask <String, String, List <Movie>>{
         if(movies !=null){
         for (int i = 0; i < movies.size(); i++) {
             Log.d("Kustom post Fragment", String.valueOf(movies.get(i).getTitle()));
+            Log.d("Kustom post Fragment", String.valueOf(movies.get(i).getPoster_path()));
         }
 
         }else{

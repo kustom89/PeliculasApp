@@ -1,21 +1,22 @@
 package cl.kustom.peliculasapp.adapters;
 
-import android.content.Context;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cl.kustom.peliculasapp.R;
-import cl.kustom.peliculasapp.models.MoviesWrapper;
 import cl.kustom.peliculasapp.models.Movie;
-import cl.kustom.peliculasapp.views.MoviesFragment;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
@@ -33,11 +34,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         Log.d("Kustom5","*********************");
 
         Movie movie =  resultsList.get(i);
-        //String tittula= movie.getTitle();
-        //Context context = viewHolder.itemView.getContext();
         viewHolder.title.setText(movie.getTitle().toString());
         viewHolder.fechaEstreno.setText(movie.getRelease_date().toString());
-
+        Picasso.get().load("https://image.tmdb.org/t/p/w500/" + movie.getPoster_path()).centerCrop().fit().into(viewHolder.portada);
 
     }
 
@@ -58,12 +57,15 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         private TextView title;
         private TextView fechaEstreno;
+        private ImageView portada;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             title = (TextView) itemView.findViewById(R.id.titleTv);
             fechaEstreno = itemView.findViewById(R.id.fechaEstrenoTv);
+            portada = itemView.findViewById(R.id.posterIv);
+
         }
     }
 }
