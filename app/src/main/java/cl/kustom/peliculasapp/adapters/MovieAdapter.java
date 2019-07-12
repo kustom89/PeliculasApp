@@ -36,6 +36,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         Movie movie =  resultsList.get(i);
         viewHolder.title.setText(movie.getTitle().toString());
         viewHolder.fechaEstreno.setText(movie.getRelease_date().toString());
+        viewHolder.nota.setText(String.valueOf(movie.getVote_average()));
         Picasso.get().load("https://image.tmdb.org/t/p/w500/" + movie.getPoster_path()).centerCrop().fit().into(viewHolder.portada);
 
     }
@@ -58,6 +59,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         private TextView title;
         private TextView fechaEstreno;
         private ImageView portada;
+        private TextView nota;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -65,6 +67,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             title = (TextView) itemView.findViewById(R.id.titleTv);
             fechaEstreno = itemView.findViewById(R.id.fechaEstrenoTv);
             portada = itemView.findViewById(R.id.posterIv);
+            nota = itemView.findViewById(R.id.notaTv);
 
         }
     }
